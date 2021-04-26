@@ -1,6 +1,8 @@
 {
   "name": "@itshizhan/video-player",
-  "version": "0.0.1",
+  "version": "0.0.2",
+  "homepage": "https://github.com/itshizhan-developer/video-player",
+  "description": "a video-player based on vue3 and typescript",
   "author": {
     "name": "itshizhan",
     "email": "itshizhan@163.com"
@@ -26,6 +28,10 @@
   ],
   "publishConfig": {
     "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/itshizhan-developer/video-player"
   },
   "dependencies": {
     "vue": "^3.0.5"
