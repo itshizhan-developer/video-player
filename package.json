@@ -1,0 +1,20 @@
+{
+  "name": "itshizhan-player",
+  "version": "1.0.0",
+  "description": "video player based vue3 and typescript",
+  "main": "index.js",
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "video",
+    "player",
+    "vue3",
+    "typescript"
+  ],
+  "author": "itshizhan",
+  "license": "MIT"
+}

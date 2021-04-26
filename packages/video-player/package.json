@@ -1,0 +1,42 @@
+{
+  "name": "@itshizhan/video-player",
+  "version": "0.0.1",
+  "author": {
+    "name": "itshizhan",
+    "email": "itshizhan@163.com"
+  },
+  "scripts": {
+    "dev": "vite",
+    "buildBak": "vue-tsc --noEmit && vite build",
+    "build": "vite build",
+    "serve": "vite preview",
+    "types": "tsc -p types.config.json",
+    "build-publish": "npm run build && npm run types",
+    "pub": "npm publish"
+  },
+  "types": "dist/index.d.ts",
+  "main": "dist/index.umd.js",
+  "module": "dist/index.es.js",
+  "license": "MIT",
+  "keywords": [
+    "video",
+    "player",
+    "vue3",
+    "typescript"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "dependencies": {
+    "vue": "^3.0.5"
+  },
+  "devDependencies": {
+    "@types/node": "^14.14.41",
+    "@vitejs/plugin-vue": "^1.2.1",
+    "@vue/compiler-sfc": "^3.0.5",
+    "sass": "^1.32.11",
+    "typescript": "^4.2.4",
+    "vite": "^2.1.5",
+    "vue-tsc": "^0.0.24"
+  }
+}
