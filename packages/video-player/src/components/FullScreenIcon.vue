@@ -1,5 +1,6 @@
 <template>
   <svg
+		class="small-fullscreen"
 		:width="width"
 		:height="width"
 		viewBox="0 0 48 48"

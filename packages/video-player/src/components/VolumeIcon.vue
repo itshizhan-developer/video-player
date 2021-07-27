@@ -1,5 +1,6 @@
 <template>
 <svg
+		class="small-volume"
 		:width="width"
 		:height="height"
 		viewBox="0 0 48 48"

@@ -1,5 +1,6 @@
 <template>
 	<svg
+		class="small-pause"
 		:width="size"
 		:height="size"
 		viewBox="0 0 48 48"

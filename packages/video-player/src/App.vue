@@ -1,7 +1,7 @@
 <template>
-  <div>
+  <div style="width:100%">
     <h3>VideoPlayer Demo</h3>
-    <div class="video-box" style="width:800px;height:800px">
+    <div class="video-box" style="width:100vw">
       <video-player :src="src" poster="/src/assets/poster.jpg" />
     </div>
   </div>
