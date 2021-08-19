@@ -23,6 +23,13 @@ import "@itshizhan/video-player/dist/style.css";
 createApp(App).use(VPlayer).mount('#app')
 ```
 
+# 更新日志
+2021-08-20 
+  - 区分移动端和PC的适配
+  - 异步加载视频地址
+
+2021-07-28 已适配移动端
+
 # Inspired
 
 This Component is inspired by this [Article](https://freshman.tech/custom-html5-video/), just refactor based on vue3 and typescript

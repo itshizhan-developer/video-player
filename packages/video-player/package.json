@@ -1,6 +1,6 @@
 {
   "name": "@itshizhan/video-player",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "homepage": "https://github.com/itshizhan-developer/video-player",
   "description": "a video-player based on vue3 and typescript",
   "author": {
