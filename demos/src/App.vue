@@ -9,15 +9,19 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
-//@ts-ignore
-import mp4Src from './assets/video.mp4';
-//@ts-ignore
-import posterSrc from './assets/poster.jpg';
+import { defineComponent, onMounted,ref } from 'vue'
+
 
 export default defineComponent({
   name: 'App',
   setup() {
+    const mp4Src = ref("");
+    const posterSrc = ref("https://file.ooowin.com/20190305/964ed66bdf7035c0aff07836eb00d19c.png")
+    onMounted(()=>{
+      setTimeout(()=>{
+        mp4Src.value = "https://file.ooowin.com/lvP5Y8CnvrwACu3_Q8ovaVMLb00h.mp4"
+      },1000)
+    })
     return {
       mp4Src,
       posterSrc

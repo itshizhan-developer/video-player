@@ -9,15 +9,14 @@
 
 <script lang="ts">
 import VideoPlayer from './components/VideoPlayer.vue';
-import { defineComponent } from 'vue';
-//@ts-ignore
-import src from './assets/video.mp4';
+import { defineComponent,ref } from 'vue';
 const App = defineComponent({
   name: 'App',
   components: {
     VideoPlayer,
   },
   setup() {
+    const src = ref("https://file.ooowin.com/lvP5Y8CnvrwACu3_Q8ovaVMLb00h.mp4")
     return {
       src
     }

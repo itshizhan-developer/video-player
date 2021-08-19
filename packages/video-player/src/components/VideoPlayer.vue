@@ -16,11 +16,12 @@
       class="video"
       preload="metadata"
       :poster="poster"
+      :src="src"
     >
-      <source :src="src" type="video/mp4" />
+      <!-- <source :src="src" type="video/mp4" /> -->
     </video>
 
-    <div class="video-controls" :class="{ hidden: controls,'hidden-controll': hiddenControlls}">
+    <div class="video-controls" :class="{ hidden: controls,'hidden-controll': hiddenControlls}" ref="videoControls">
       <div class="video-progress">
         <progress
           class="progress-bar"
@@ -124,6 +125,7 @@ export default defineComponent({
   },
   setup() {
     const videoDom = ref<HTMLVideoElement>();
+    const videoControls = ref<HTMLElement>()
     const isPlaying = ref(false);
     const controls = useShowControls();
     const togglePlay = useTogglePlay(videoDom);
@@ -185,6 +187,30 @@ export default defineComponent({
 			},3000)
     }
 
+    //PC鼠标移动上去，状态展示
+    function animatePlaybackForPc() {
+			const video = videoDom.value as HTMLVideoElement;
+
+      console.log("--animatePlaybackForPc----");
+      //显示controll
+      hiddenControlls.value = false;
+      if(video.paused ||video.ended){
+        console.log("======暂停=======");
+        //隐藏暂停按钮
+        isShowAnimatePauseIcon.value = false
+        //显示播放按钮
+        isShowAnimatePlayIcon.value = true;
+      }else{
+        console.log("======非暂停=======")
+        //隐藏播放按钮
+        isShowAnimatePlayIcon.value = false;
+        //显示暂停按钮
+        isShowAnimatePauseIcon.value = true;
+        
+      }
+    }
+
+
     function toggleFullScreen() {
       console.log("----toggleFullScreen-----");
       // typescript中 webkitFullscreenElement 属性不存在，所有强制any
@@ -221,6 +247,10 @@ export default defineComponent({
 			}
 		}
 
+    function doNothing(){
+      console.log("--------doNothing---------")
+    }
+
     // input事件 在vue 中，更推荐监听 progressValue的值
     // function skipAhead(){
     //   const video = videoDom.value as HTMLVideoElement
@@ -255,6 +285,47 @@ export default defineComponent({
       video?.addEventListener("loadedmetadata", initVideo);
       //更新视频播放事件
       video?.addEventListener("timeupdate", updateTimeElapsed);
+
+      //监听PC端鼠标事件
+      if(CommonUtils.isMobile()||CommonUtils.isMobile()){
+        console.log("------微信或移动端-------")
+      }else{
+        console.log("------PC 端-------")
+        const videoContainer = videoContainerDom.value as any;
+        let  ismouseenter = false // 初态未移入鼠标
+        //事件务必不能绑定在video上，否则会无限闪烁
+        videoContainer?.addEventListener("mouseenter", () => {
+          if(ismouseenter) {
+            //鼠标已移入，不再重复激活
+            return
+          }else{
+            console.log("mouseenter")
+            setTimeout(()=>{
+              animatePlaybackForPc()
+              ismouseenter = true; // 状态设为移入
+            },60)
+            
+          }
+
+        });
+        videoContainer?.addEventListener("mouseleave", () => {
+          if(ismouseenter==false){
+            //鼠标未移入，不存在离开
+            return
+          }else{
+            console.log("mouseleave")
+            setTimeout(()=>{
+              //隐藏播放按钮
+              isShowAnimatePauseIcon.value = false;
+              //隐藏controll
+              hiddenControlls.value = true;
+              ismouseenter = false
+            },60)
+          }
+        });
+
+  
+      }
 			
     });
     return {
@@ -277,7 +348,7 @@ export default defineComponent({
 			hiddenControlls,
 			isShowAnimatePlayIcon,
 			isShowAnimatePauseIcon,
-			togglePlayNew
+			togglePlayNew,
     };
   },
 });
@@ -327,6 +398,8 @@ export default defineComponent({
       rgba(0, 0, 0, 0.3),
       rgba(0, 0, 0, 0.5)
     );
+    // 设置后无法播放，不相应鼠标事件
+    // pointer-events: none;
   }
 
   .video-controls.hide {
